@@ -6,8 +6,6 @@ This is a sample project that uses OpenAI to correct and improve text.
 
 ![video](./public/test-sample.gif)
 
-You can inspect the application [here](https://gpt-proofreading.vercel.app/).
-
 ## How to use
 
 1. Obtain your openai api key from [here](https://openai.com/)
