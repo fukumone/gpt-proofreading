@@ -29,27 +29,15 @@ const Home: NextPage = () => {
     if (text.trim() === "") return;
     try {
       setIsLoading(true);
-      const prompt = `I want you to act as an English translator, spelling corrector and improver. I will speak to you in any language and you will detect the language, translate it and answer in the corrected and improved version of my text, in English. I want you to replace my simplified A0-level words and sentences with more beautiful and elegant, upper level English words and sentences. Keep the meaning same, but make them more scientific and academic. I want you to only reply the correction, the improvements and nothing else, do not write explanations. My sentences are ${text}`;
-      const requestOptions = {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization:
-            "Bearer " + String(process.env.NEXT_PUBLIC_OPENAI_API_KEY),
-        },
-        body: JSON.stringify({
-          model: "text-davinci-003",
-          prompt: prompt,
-          temperature: 0,
-          max_tokens: 500,
-        }),
-      };
-      await fetch("https://api.openai.com/v1/completions", requestOptions)
+      await fetch(
+        `${process.env.NEXT_PUBLIC_API_SERVER}/api/translate?text=${text}`
+      )
         .then((response) => response.json())
         .then((data) => {
-          setResult(data.choices[0].text.trim());
-          return data.choices[0].text.trim();
-        })
+          const result = data.data.trim();
+          setResult(result);
+          return result;
+        });
     } catch (error) {
       console.error(error);
     } finally {
@@ -140,7 +128,7 @@ const Home: NextPage = () => {
             <Image
               src='/github-mark-white.svg'
               alt='github logo'
-              width={20}
+              width={18}
               height={16}
             />
           </span>
