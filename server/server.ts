@@ -1,4 +1,4 @@
-import {Application} from 'https://deno.land/x/oak/mod.ts';
+import {Application} from './deps.ts';
 import router from './routes.ts';
 const port = Deno.env.get('PORT') || 4000;
 

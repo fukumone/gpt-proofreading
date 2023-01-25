@@ -1,4 +1,4 @@
-import {Router, helpers} from "https://deno.land/x/oak/mod.ts";
+import {Router, helpers} from "./deps.ts";
 
 const fetchTranslation = async (text: string) => {
   if (!text.trim()) {
