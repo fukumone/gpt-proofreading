@@ -1,4 +1,4 @@
-import {Router, helpers} from "./deps.ts";
+import {Router, helpers, Context} from "./deps.ts";
 
 const fetchTranslation = async (text: string) => {
   if (!text.trim()) {
@@ -25,7 +25,7 @@ const fetchTranslation = async (text: string) => {
   return choices[0].text.trim();
 };
 
-const getTranslation = async (context) => {
+const getTranslation = async (context: Context) => {
   try {
     const {text} = helpers.getQuery(context, {mergeParams: true});
 
